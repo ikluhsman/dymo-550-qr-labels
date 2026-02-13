@@ -1,5 +1,5 @@
 # ---------- Build frontend ----------
-FROM node:20-alpine AS client-build
+FROM node:20-slim AS client-build
 
 WORKDIR /app/client
 
@@ -10,8 +10,8 @@ COPY client .
 RUN npm run build
 
 
-# ---------- Build backend ----------
-FROM node:20-alpine
+# ---------- Runtime ----------
+FROM node:20-slim
 
 WORKDIR /app
 
