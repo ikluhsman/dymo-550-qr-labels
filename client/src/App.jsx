@@ -10,7 +10,7 @@ export default function App() {
   async function allocate() {
     setLoading(true)
     try {
-      const res = await fetch('http://localhost:4000/api/allocate-batch', {
+      const res = await fetch('/api/allocate-batch', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ prefix, count: Number(count) })

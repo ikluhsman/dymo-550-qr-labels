@@ -1,6 +1,6 @@
 services:
   dymo-qr:
-    image: registry.example.com/dymo-qr:1.0.0
+    image: registry.example.com/dymo-qr:latest
     container_name: dymo-qr
     restart: unless-stopped
     ports:
@@ -9,7 +9,6 @@ services:
       - NODE_ENV=production
       - DB_PATH=/data/labels.db
     volumes:
-      - dymo-qr-data:/data
       - type: volume
         source: data
         target: /data
@@ -22,4 +21,4 @@ services:
       retries: 3
       start_period: 10s
 volumes:
-  dymo-qr-data:
+  data:

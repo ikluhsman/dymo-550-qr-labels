@@ -3,11 +3,14 @@ FROM node:20-slim AS client-build
 
 WORKDIR /app/client
 
+# Install pnpm
+RUN corepack enable
+
 COPY client/package*.json ./
-RUN npm install
+RUN pnpm install
 
 COPY client .
-RUN npm run build
+RUN pnpm build
 
 
 # ---------- Runtime ----------
@@ -21,7 +24,7 @@ WORKDIR /app/server
 RUN npm install --omit=dev
 
 # Copy backend code
-COPY server ./ 
+COPY server ./
 
 # Copy built frontend into /public
 COPY --from=client-build /app/client/dist ./public
